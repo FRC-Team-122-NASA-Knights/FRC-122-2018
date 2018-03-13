@@ -1,7 +1,7 @@
 package org.usfirst.frc.team122.robot;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
@@ -19,7 +19,7 @@ public class Gripper {
 	DoubleSolenoid.Value deployed = DoubleSolenoid.Value.kForward;
 
 	// Intake wheels
-	private WPI_TalonSRX spinny, spinnySlave;
+	private WPI_VictorSPX spinny, spinnySlave;
 	private final double ejectSpeed = 0.75;
 	private final double intakeSpeed = -1;
 	private final double stallSpeed = -0.15;
@@ -33,9 +33,9 @@ public class Gripper {
 
 		// Intake/Eject wheels. Master/Slave pair with right wheel set inverted to allow
 		// wheels to spin in opposite directions.
-		this.spinny = new WPI_TalonSRX(leftSpinny);
+		this.spinny = new WPI_VictorSPX(leftSpinny);
 		this.spinny.setNeutralMode(NeutralMode.Coast);
-		this.spinnySlave = new WPI_TalonSRX(rightSpinny);
+		this.spinnySlave = new WPI_VictorSPX(rightSpinny);
 		this.spinnySlave.follow(spinny);
 		this.spinnySlave.setInverted(true);
 	}
